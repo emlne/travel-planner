@@ -6,6 +6,13 @@ Sistem, lokasyon verilerini gerçek dünya koordinatlarına dönüştürmek içi
 
 ---
 
+## 🌐 Canlı Sunucu (Live API)
+Projenin backend servisi Render üzerinde canlı olarak yayınlanmaktadır. API testlerinizi doğrudan aşağıdaki kök (base) URL üzerinden gerçekleştirebilirsiniz:
+
+👉 **[https://travel-planner-0sg1.onrender.com](https://travel-planner-0sg1.onrender.com)**
+
+---
+
 ## 🚀 Öne Çıkan Özellikler
 
 * 🤖 **AI Destekli Akıllı Rota Yapılanması:** En yeni `gemini-3-flash-preview` modelini kullanarak, gevezelikten uzak, tamamen sisteme entegre edilebilir dinamik saf JSON rotaları üretir.
@@ -108,7 +115,7 @@ Projenin sürdürülebilirliği ve karmaşıklığı önlemek adına kaynak kodl
 
 Sistemi yerelde veya canlı sunucuda (Render) test etmek için hazırlanan API isteklerine, test senaryolarına ve tüm uç noktalarına (Mekan Ekleme, Koordinat Doğrulama, Gemini Rota Üretimi) aşağıdaki bağlantıdan doğrudan ulaşabilirsiniz:
 
-👉 **[Postman Koleksiyonuna Buradan Bakabilirsiniz](https://github.com/emlne/travel-planner)**
+👉 **[Postman Koleksiyonuna Buradan Bakabilirsiniz](./rotabul.postman_collection.json)**
 
 Bu bağlantı üzerinden koleksiyon dosyasını bilgisayarınıza indirip Postman uygulamasına `Import` ederek tüm senaryoları saniyeler içinde simüle edebilirsiniz.
 
