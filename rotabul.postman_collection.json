@@ -1,0 +1,321 @@
+{
+  "info": {
+    "_postman_id": "b31c27f6-95ad-4d43-8b4e-b19d9838b777",
+    "name": "rotabul",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50521176",
+    "_collection_link": "https://go.postman.co/collection/50521176-b31c27f6-95ad-4d43-8b4e-b19d9838b777?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "ilk kullanıcı oluşturma",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"eminetrkoglu.05@gmail.com\",\r\n  \"password\": \"Emine2005#\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/auth/register",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "yönetici girişi",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"eminetrkoglu.05@gmail.com\",\r\n  \"password\": \"Emine2005#\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "yönetici görüntüleme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/auth/me",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "yeni mekan ekleme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Akmaz plajı\",\r\n  \"categories\": [\"deniz\"],\r\n  \"averageSpendingTime\": 3,\r\n  \"carRequired\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/locations",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "locations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "mekan listeleme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/locations",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "locations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "mekan bilgileri güncelleme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Akmaz Plajı\",\r\n  \"categories\": [\"deniz\"],\r\n  \"averageSpendingTime\": 3,\r\n  \"carRequired\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/locations/6a0a233f8a7c135a92341138",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "locations",
+            "6a0a233f8a7c135a92341138"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "mekan silme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/locations/6a0a233f8a7c135a92341138",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "locations",
+            "6a0a233f8a7c135a92341138"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "akıllı rota oluşturma",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"days\": 2,\r\n  \"hasCar\": true,\r\n  \"categories\": [\"Doğa\", \"Macera\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/routes/generate",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "routes",
+            "generate"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "rotaları listeleme",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/routes/6a0a0f40f296a786861fc0bd",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "routes",
+            "6a0a0f40f296a786861fc0bd"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
