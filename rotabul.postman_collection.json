@@ -8,23 +8,13 @@
   },
   "item": [
     {
-      "name": "ilk kullanıcı oluşturma",
+      "name": "kullanıcı kayıt",
       "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"email\": \"eminetrkoglu.05@gmail.com\",\r\n  \"password\": \"Emine2005#\"\r\n}",
+          "raw": "{\r\n  \"name\": \"Test Kullanici\",\r\n  \"email\": \"test@WanderSticker.com\",\r\n  \"password\": \"Password123#\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -49,16 +39,13 @@
       "response": []
     },
     {
-      "name": "yönetici girişi",
+      "name": "kullanıcı girişi",
       "request": {
-        "auth": {
-          "type": "noauth"
-        },
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"email\": \"eminetrkoglu.05@gmail.com\",\r\n  \"password\": \"Emine2005#\"\r\n}",
+          "raw": "{\r\n  \"email\": \"test@WanderSticker.com\",\r\n  \"password\": \"Password123#\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -83,7 +70,7 @@
       "response": []
     },
     {
-      "name": "yönetici görüntüleme",
+      "name": "kullanıcı görüntüleme",
       "request": {
         "auth": {
           "type": "bearer",
@@ -312,6 +299,133 @@
             "api",
             "routes",
             "6a0a0f40f296a786861fc0bd"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "akıllı rotayı kaydetme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"routeTitle\": \"Fethiye Tarih ve Doğa Rotası\",\r\n        \"totalDays\": 2,\r\n        \"dailyPlans\": [\r\n            {\r\n                \"day\": 1,\r\n                \"title\": \"Tarihin İzinde Kayaköy\",\r\n                \"placesToVisit\": [\r\n                    \"Kayıp Şehir Kayaköy\"\r\n                ],\r\n                \"description\": \"Tatilin ilk gününde, arabanızla ulaşım sağlayarak Kayaköy'ün tarihi atmosferini, eski kiliselerini ve taş evlerini keşfedebilirsiniz.\"\r\n            },\r\n            {\r\n                \"day\": 2,\r\n                \"title\": \"Babadağ'da Doğa ve Eşsiz Manzara\",\r\n                \"placesToVisit\": [\r\n                    \"Babadağ Teleferik\"\r\n                ],\r\n                \"description\": \"İkinci gününüzde teleferik kullanarak Babadağ'ın zirvesine çıkabilir, muhteşem doğa manzarası eşliğinde vaktinizi geçirebilirsiniz.\"\r\n            }\r\n        ],\r\n        \"preferences\": {\r\n            \"hasCar\": true,\r\n            \"categories\": [\r\n                \"Doğa\",\r\n                \"Tarih\"\r\n            ]\r\n        }\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/routes/save",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "routes",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "kendi rotalarını listeleme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/routes/my",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "routes",
+            "my"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "rotayı görüntüleme",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/routes/6a0c40b5012ed6630b409e66",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "routes",
+            "6a0c40b5012ed6630b409e66"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "oluşturulan rotayı silme",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMGEyMTg4OGE3YzEzNWE5MjM0MTEzNyIsImlhdCI6MTc3OTA0ODg3NSwiZXhwIjoxNzgxNjQwODc1fQ.U04M4gkmjsXljd5vOw32C7fCRZpSbAqfY1t12x8b9aE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://travel-planner-0sg1.onrender.com/api/routes/6a0c40b5012ed6630b409e66",
+          "protocol": "https",
+          "host": [
+            "travel-planner-0sg1",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "routes",
+            "6a0c40b5012ed6630b409e66"
           ]
         }
       },
