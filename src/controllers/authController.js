@@ -11,18 +11,9 @@ const signToken = (id) => {
 // YENİ KAYIT (Register)
 exports.register = async (req, res) => {
     try {
-        // KRİTİK KONTROL: Veritabanında herhangi bir kullanıcı var mı?
-        const userCount = await User.countDocuments();
-
-        // Eğer zaten bir kullanıcı (admin) varsa, kapıyı kapat!
-        if (userCount > 0) {
-            return res.status(403).json({
-                success: false,
-                message: 'Kayıt işlemi artık kapalıdır. Sadece mevcut yönetici giriş yapabilir.'
-            });
-        }
 
         const newUser = await User.create({
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password
         });
@@ -32,7 +23,8 @@ exports.register = async (req, res) => {
         res.status(201).json({
             success: true,
             token,
-            message: 'İlk yönetici hesabı başarıyla oluşturuldu.'
+            user: newUser,
+            message: 'Aramıza hoş geldin! 🎉'
         });
     } catch (err) {
         res.status(400).json({ success: false, message: err.message });
@@ -58,7 +50,7 @@ exports.login = async (req, res) => {
 
         // 3) Her şey tamamsa Token gönder
         const token = signToken(user._id);
-        res.status(200).json({ success: true, token });
+        res.status(200).json({ success: true, token, user });
 
     } catch (err) {
         res.status(400).json({ success: false, message: err.message });
@@ -70,9 +62,7 @@ exports.getMe = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            data: {
-                user: req.user
-            }
+            user: req.user
         });
     } catch (err) {
         res.status(400).json({ success: false, message: err.message });

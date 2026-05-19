@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
 const routeSchema = new mongoose.Schema({
+
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Kullanıcı modelini kaydettiğin isimle (büyük-küçük harf dahil) birebir aynı olmalı
+        required: [true, 'Bir rotanın kaydedilebilmesi için bir kullanıcıya ait olması zorunludur']
+    },
     routeTitle: {
         type: String,
         required: [true, 'Rota için bir başlık gereklidir']
@@ -28,6 +34,7 @@ const routeSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+
 });
 
 module.exports = mongoose.model('Route', routeSchema);

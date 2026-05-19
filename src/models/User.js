@@ -2,11 +2,18 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs'); // Şifreleri şifrelemek için
 
 const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, 'Ad alanı zorunludur'],
+        trim: true,
+        maxlength: [50, 'İsim alanı 50 karakterden büyük olamaz.']
+    },
     email: {
         type: String,
         required: [true, 'Email adresi zorunludur'],
         unique: true, // Aynı email ile ikinci kayıt yapılamaz
-        lowercase: true
+        lowercase: true,
+        trim: true
     },
     password: {
         type: String,
@@ -25,8 +32,8 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin'],
-        default: 'admin'
+        enum: ['user','admin'],
+        default: 'user'
     }
 }, { timestamps: true });
 

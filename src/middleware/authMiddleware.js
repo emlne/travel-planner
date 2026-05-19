@@ -30,3 +30,15 @@ exports.protect = async (req, res, next) => {
         res.status(401).json({ message: 'Geçersiz veya süresi dolmuş anahtar.' });
     }
 };
+
+exports.adminMiddleware = (req, res, next) => {
+    // req.user zaten yukarıdaki protect (authMiddleware) tarafından dolduruluyor
+    if (req.user && req.user.role === 'admin') {
+        next(); // Admin ise geçebilir
+    } else {
+        return res.status(403).json({ 
+            success: false,
+            message: 'Erişim engellendi! Bu işlem için yönetici (admin) yetkisi gerekiyor.' 
+        });
+    }
+};
