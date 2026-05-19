@@ -1,8 +1,8 @@
-﻿# 🌍 Smart Travel Planner (Akıllı Rota Planlama Asistanı)
+# 🌍 Smart Travel Planner (Akıllı Rota Planlama Asistanı)
 
 Smart Travel Planner, kullanıcıların tatil süreleri, araç sahiplik durumları ve kişisel ilgi alanlarına göre tamamen kişiselleştirilmiş, gün gün planlanmış seyahat rotaları oluşturan **Yapay Zeka destekli** bir full-stack web/mobil uygulaması altyapısıdır.
 
-Sistem, lokasyon verilerini gerçek dünya koordinatlarına dönüştürmek için **Google Maps Geocoding API**'yi kullanırken, en mantıklı ve optimize seyahat rotasını çizmek için Google'ın en yeni nesil **Gemini 3 (Flash Preview)** yapay zeka motorunu kullanır.
+Sistem, lokasyon verilerini gerçek dünya koordinatlarına dönüştürmek için **Google Maps Geocoding API**'yi kullanırken, en mantıklı ve optimize seyahat rotasını çizmek için Google'ın en yeni nesil **Gemini 3 (Flash Preview)** yapay zeka motorunu kullanır. Yeni SaaS mimarisi sayesinde kullanıcılar rotalarını oluşturabilir, defterlerine kaydedebilir ve arkadaşlarıyla paylaşabilir.
 
 ---
 
@@ -17,9 +17,9 @@ Projenin backend servisi Render üzerinde canlı olarak yayınlanmaktadır. API 
 
 * 🤖 **AI Destekli Akıllı Rota Yapılanması:** En yeni `gemini-3-flash-preview` modelini kullanarak, gevezelikten uzak, tamamen sisteme entegre edilebilir dinamik saf JSON rotaları üretir.
 * 🗺️ **Otomatik Coğrafi Konumlandırma:** Girilen metinsel adresleri, Google Maps altyapısıyla otomatik olarak enlem (`lat`) ve boylam (`lng`) koordinatlarına dönüştürerek veritabanına kaydeder.
+* 👑 **Rol Bazlı Erişim Kontrolü (RBAC):** Yönetici (Admin) ve Kullanıcı (User) yetkilendirmeleriyle sistem güvenliğini en üst düzeye çıkarır. Mekan ekleme/düzenleme işlemleri sadece yöneticilere özeldir.
+* 🔗 **Freemium ve Paylaşım Kurgusu:** Ziyaretçiler yapay zekaya ücretsiz rota ürettirebilir. Bu rotayı kaydetmek istediklerinde üyelik sistemine dahil olurlar. Oluşturulan rotalar, paylaşıma açık benzersiz linklerle (ID) arkadaşlara gönderilebilir.
 * 🔐 **Gelişmiş Güvenlik Duvarı:** JWT (JSON Web Token) tabanlı kimlik doğrulama mimarisi ile kullanıcı verilerini ve hassas API uç noktalarını koruma altında tutar.
-* 💾 **Kalıcı Veri Yönetimi:** MongoDB Atlas üzerinde optimize edilmiş `User`, `Location` ve `Route` şemalarıyla oluşturulan rotaları kalıcı olarak saklar ve saniyeler içinde geri çağırır.
-* 📈 **Profesyonel Git Akışı (Branching):** Kod tabanını dökümantasyon (`main`), arka yüz (`backend`) ve ön yüz (`frontend`) olarak tamamen izole eden profesyonel mimari.
 
 ---
 
@@ -34,35 +34,41 @@ Projenin backend servisi Render üzerinde canlı olarak yayınlanmaktadır. API 
 
 ---
 
+## 🔌 API Uç Noktaları (Endpoints)
+
+### 🔑 Kimlik Doğrulama (Auth)
+| Metot | Uç Nokta | Açıklama | Erişim Yetkisi |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Yeni kullanıcı hesabı oluşturur. | Herkese Açık |
+| `POST` | `/api/auth/login` | Giriş yapar ve JWT Token döner. | Herkese Açık |
+| `GET`  | `/api/auth/me`       | Anlık giriş yapmış kullanıcı bilgilerini getirir. | Sadece Üyeler (Token) |
+
+### 📍 Mekan Yönetimi (Locations)
+| Metot | Uç Nokta | Açıklama | Erişim Yetkisi |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/locations` | Sistemdeki tüm kayıtlı mekanları listeler. | Herkese Açık |
+| `POST` | `/api/locations/add` | Yeni mekan ekler (Adresi koordinata çevirir). | **Sadece Admin** |
+| `PUT` | `/api/locations/:id` | Mevcut bir mekanın bilgilerini günceller. | **Sadece Admin** |
+| `DELETE`| `/api/locations/:id` | Mevcut bir mekanı veritabanından siler. | **Sadece Admin** |
+
+### 🧭 Akıllı Rota Motoru (Smart Routes)
+| Metot | Uç Nokta | Açıklama | Erişim Yetkisi |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/routes/generate` | Yapay zeka ile rota üretir (Veritabanına KAYDETMEZ). | Herkese Açık |
+| `POST` | `/api/routes/save` | Üretilen rotayı "Seyahat Defterine" kaydeder. | Sadece Üyeler (Token) |
+| `GET` | `/api/routes/my` | Kullanıcının kendi kaydettiği rotaları listeler. | Sadece Üyeler (Token) |
+| `GET` | `/api/routes/:id` | Rotayı ID ile getirir (Link paylaşımı için). | Herkese Açık |
+| `DELETE`| `/api/routes/:id` | Kaydedilmiş rotayı siler. | **Sadece Rotanın Sahibi** |
+
+---
+
 ## 📁 Git Dallanma (Branch) Mimarisi
 
 Projenin sürdürülebilirliği ve karmaşıklığı önlemek adına kaynak kodları ve dökümantasyonlar birbirinden tamamen bağımsız dallarda (branch) yönetilmektedir:
 
 * 📌 **`main`**: Sadece projenin genel gereksinimleri, Postman koleksiyonları ve mimari dökümantasyonunu barındırır. Kaynak kod içermez.
 * ⚙️ **`backend`**: Node.js, Express, Gemini 3 ve MongoDB Atlas bağlantılarının yer aldığı tüm arka yüz kaynak kodlarını barındırır.
-* 🎨 **`frontend`**: Kullanıcıların etkileşime geçeceği arayüz (Client-side) kaynak kodlarını barındırır.
-
----
-
-## 🔌 API Uç Noktaları (Endpoints)
-
-### 🔑 Kimlik Doğrulama (Auth)
-| Metot | Uç Nokta | Açıklama | Erişim |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/auth/register` | Yeni kullanıcı hesabı oluşturur. | Herkese Açık |
-| `POST` | `/api/auth/login` | Giriş yapar ve JWT Token döner. | Herkese Açık |
-
-### 📍 Mekan Yönetimi (Locations)
-| Metot | Uç Nokta | Açıklama | Erişim |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/locations` | Yeni mekan ekler (Adresi koordinata çevirir). | Herkese Açık |
-| `GET` | `/api/locations` | Sistemdeki tüm kayıtlı mekanları listeler. | Herkese Açık |
-
-### 🧭 Akıllı Rota Motoru (Smart Routes)
-| Metot | Uç Nokta | Açıklama | Erişim |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/routes/generate` | Yapay zeka ile yeni rota üretir ve kaydeder. | Herkese Açık |
-| `GET` | `/api/routes/:id` | Veritabanından ID'ye göre kaydedilmiş rotayı getirir. | Herkese Açık |
+* 🎨 **`frontend`**: Kullanıcıların etkileşime geçeceği React tabanlı arayüz kaynak kodlarını barındırır.
 
 ---
 
@@ -113,7 +119,7 @@ Projenin sürdürülebilirliği ve karmaşıklığı önlemek adına kaynak kodl
 
 ## 📑 Postman Koleksiyonu
 
-Sistemi yerelde veya canlı sunucuda (Render) test etmek için hazırlanan API isteklerine, test senaryolarına ve tüm uç noktalarına (Mekan Ekleme, Koordinat Doğrulama, Gemini Rota Üretimi) aşağıdaki bağlantıdan doğrudan ulaşabilirsiniz:
+Sistemi yerelde veya canlı sunucuda (Render) test etmek için hazırlanan güncel API isteklerine (Auth, Admin Kontrolleri, Rota Senaryoları) aşağıdaki bağlantıdan doğrudan ulaşabilirsiniz:
 
 👉 **[Postman Koleksiyonuna Buradan Bakabilirsiniz](./rotabul.postman_collection.json)**
 
