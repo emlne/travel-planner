@@ -5,7 +5,7 @@ const Route = require('../models/Route');
 // 1. ROTAYI SADECE ÜRET (VERİTABANINA KAYDETMEZ) - POST /api/routes/generate
 exports.createSmartRoute = async (req, res) => {
     try {
-        const { days, hasCar, categories } = req.body;
+        const { days, vehicle, categories } = req.body;
 
         const locations = await Location.find();
 
@@ -17,7 +17,11 @@ exports.createSmartRoute = async (req, res) => {
         }
 
         // Yapay Zekadan rotayı al
-        const smartRoute = await aiService.generateSmartRoute(locations, { days, hasCar, categories });
+        const smartRoute = await aiService.generateSmartRoute(locations, {
+            days,
+            vehicle,
+            categories 
+        });
 
 
         // Veriyi kaydetmeden, sadece ön yüzde (frontend) gösterilmesi için doğrudan JSON olarak fırlatıyoruz.
@@ -27,7 +31,7 @@ exports.createSmartRoute = async (req, res) => {
                 routeTitle: smartRoute.routeTitle,
                 totalDays: smartRoute.totalDays,
                 dailyPlans: smartRoute.dailyPlans,
-                preferences: { hasCar, categories }
+                preferences: { vehicle, categories }
             }
         });
 

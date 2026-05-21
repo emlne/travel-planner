@@ -17,9 +17,9 @@ const routeSchema = new mongoose.Schema({
     },
     // Misafirin bu rotayı hangi ayarlarla oluşturduğunu da bilelim
     preferences: {
-        hasCar: {
-            type: Boolean,
-            default: false
+        vehicle: {
+            type: String,
+            default: 'araba'
         },
         categories: [String]
     },
