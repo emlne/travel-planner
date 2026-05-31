@@ -47,12 +47,27 @@ exports.createSmartRoute = async (req, res) => {
 // 2. ÖN YÜZDE BEĞENİLEN ROTAYI KAYDET - POST /api/routes/save
 exports.saveRoute = async (req, res) => {
     try {
-        // Ön yüzdeki (frontend) "Kaydet" butonundan gelen rota verilerini alıyoruz
-        const { routeTitle, totalDays, dailyPlans, preferences } = req.body;
+        let { routeTitle, totalDays, dailyPlans, preferences } = req.body;
 
-        // Veritabanına yeni rota belgesi oluşturuyoruz (Artık SAHİPLİ)
+        // 🛠️ HAYAT KURTARAN FİLTRE: Yapay zekanın isimlendirme farklılıklarını Mongoose için tek tipe indirgiyoruz
+        if (dailyPlans && Array.isArray(dailyPlans)) {
+            dailyPlans = dailyPlans.map(day => {
+                // Frontend'den ne gelirse gelsin (locations, activities vb.), hepsini yakala
+                const mekanlar = day.placesToVisit || day.locations || day.activities || [];
+                
+                return {
+                    day: day.day,
+                    title: day.title || day.theme,
+                    description: day.description,
+                    // Şemamız KESİN OLARAK placesToVisit beklediği için ona atıyoruz:
+                    placesToVisit: mekanlar 
+                };
+            });
+        }
+
+        // Veritabanına yeni rota belgesi oluşturuyoruz
         const savedRoute = await Route.create({
-            user: req.user.id, // 🔑 Şemamıza eklediğimiz user alanı. Bu ID bize authMiddleware'den (JWT) gelecek!
+            user: req.user.id, 
             routeTitle,
             totalDays,
             dailyPlans,
