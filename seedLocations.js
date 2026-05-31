@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Location = require('./src/models/Location'); // Kendi dosya yoluna göre düzenle
 
-const MONGODB_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/fethiye_planner';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/fethiye_planner';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const generateLocations = async () => {
