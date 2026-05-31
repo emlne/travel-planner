@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
 const routeSchema = new mongoose.Schema({
-
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Kullanıcı modelini kaydettiğin isimle (büyük-küçük harf dahil) birebir aynı olmalı
+        ref: 'User', 
         required: [true, 'Bir rotanın kaydedilebilmesi için bir kullanıcıya ait olması zorunludur']
     },
     routeTitle: {
@@ -15,7 +14,6 @@ const routeSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    // Misafirin bu rotayı hangi ayarlarla oluşturduğunu da bilelim
     preferences: {
         vehicle: {
             type: String,
@@ -23,21 +21,18 @@ const routeSchema = new mongoose.Schema({
         },
         categories: [String]
     },
-    // Gemini'den dönecek gün gün planlanan asıl kısım
-    dailyPlans: [{
-        day: Number,
-        title: String,
-        coordinates: {
-                lat: { type: Number },
-                lng: { type: Number }
-            },
-        description: { type: String }
-    }],
+    
+    // 🚀 İŞTE SİHİRLİ DOKUNUŞ: 
+    // İçeriği Mongoose'a denetletmiyoruz. "Ne gelirse gelsin Dizi olarak kaydet" diyoruz.
+    dailyPlans: {
+        type: [mongoose.Schema.Types.Mixed],
+        default: []
+    },
+
     createdAt: {
         type: Date,
         default: Date.now
     }
-
 });
 
 module.exports = mongoose.model('Route', routeSchema);
