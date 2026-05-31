@@ -14,7 +14,7 @@ exports.generateSmartRoute = async (locations, preferences) => {
         if (preferences.vehicle === "bus") transportMode = "Toplu Taşıma (Otobüs/Minibüs)";
         if (preferences.vehicle === "walking") transportMode = "Sadece Yürüyüş";
 
-        // 1. Adım: Yapay Zekaya vereceğimiz o sihirli komutu (Prompt Engineering) hazırlıyoruz
+        // aiService.js içindeki prompt değişkenini bununla değiştir:
         const prompt = `
             Sen Türkiye'de uzmanlaşmış profesyonel bir tatil ve rota planlama asistanısın.
             Aşağıdaki "Mevcut Mekanlar" listesini kullanarak, kullanıcının "Tercihlerine" uygun bir tatil rotası oluştur.
@@ -29,8 +29,8 @@ exports.generateSmartRoute = async (locations, preferences) => {
 
             KURALLAR:
             1. Sadece "Mevcut Mekanlar" listesindeki verileri kullan. Listede olmayan hiçbir yeri uydurma.
-            2. Rota mantıklı olmalı (Örn: Ulaşım aracı yürüyüş veya toplu taşıma ise birbirine çok uzak yerleri aynı güne koyma. Özel araç ise mesafeler esnek olabilir).
-            3. CEVABINI SADECE AŞAĞIDAKİ GİBİ BİR JSON FORMATINDA VER. Başka hiçbir açıklama, selamlama veya markdown karakteri kullanma.
+            2. CEVABINI SADECE AŞAĞIDAKİ GİBİ BİR JSON FORMATINDA VER.
+            3. ÇOK ÖNEMLİ: "placesToVisit" dizisi sadece mekan isimlerinden oluşmamalıdır! Her mekan, içinde "name" ve "coordinates" barındıran birer obje olmalıdır. Koordinatları Mevcut Mekanlar listesinden birebir al.
 
             Örnek Çıktı Formatı:
             {
@@ -40,7 +40,15 @@ exports.generateSmartRoute = async (locations, preferences) => {
                     {
                         "day": 1,
                         "title": "Tarihe Yolculuk",
-                        "placesToVisit": ["Mekan Adı 1", "Mekan Adı 2"],
+                        "placesToVisit": [
+                            {
+                                "name": "Kayıp Şehir Kayaköy",
+                                "coordinates": {
+                                    "lat": 36.5744,
+                                    "lng": 29.0931
+                                }
+                            }
+                        ],
                         "description": "Bugün çevredeki tarihi yerleri gezeceğiz."
                     }
                 ]
