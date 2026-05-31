@@ -27,8 +27,11 @@ const routeSchema = new mongoose.Schema({
     dailyPlans: [{
         day: Number,
         title: String,
-        placesToVisit: [String],
-        description: String
+        coordinates: {
+                lat: { type: Number },
+                lng: { type: Number }
+            },
+        description: { type: String }
     }],
     createdAt: {
         type: Date,
