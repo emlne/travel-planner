@@ -1,0 +1,308 @@
+/* src/components/ItineraryDetails.module.css */
+
+.loadingScreen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64ffda;
+  font-size: 1.5rem;
+  background: #0a192f;
+}
+
+/* EKRANI İKİYE BÖLEN ANA KUTU */
+.splitContainer {
+  display: flex;
+  flex-direction: row;
+  /* Yan yana diz! */
+  height: 100vh;
+  width: 100%;
+  background-color: #0a192f;
+  color: #ccd6f6;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+
+/* --- SOL TARAF: LİSTE --- */
+.listSection {
+  flex: 1;
+  /* %40 civarı yer kaplar */
+  max-width: 600px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px 30px 40px;
+  /* Navbar'ın altında kalmasın diye üstten boşluk */
+  background: radial-gradient(circle at top left, #112240 0%, #0a192f 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.listSection::-webkit-scrollbar {
+  width: 6px;
+}
+
+.listSection::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.listSection::-webkit-scrollbar-thumb {
+  background: rgba(100, 255, 218, 0.2);
+  border-radius: 10px;
+}
+
+.headerGlass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+/* --- ÇIKIŞ / GERİ DÖN BUTONU --- */
+.backBtn {
+  background: none;
+  border: none;
+  color: #8892b0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+  color: #64ffda;
+  /* Üzerine gelince Fethiye Turkuazı olsun */
+  transform: translateX(-3px);
+  /* Hafifçe sola kaysın */
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.saveBtn {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3);
+  transition: all 0.3s;
+}
+
+.saveBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5);
+}
+
+.saveBtnSaved,
+.ownerBadge {
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.metaInfo {
+  display: flex;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #64ffda;
+  flex-wrap: wrap;
+}
+
+.daysTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dayBlock {
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px dashed rgba(100, 255, 218, 0.2);
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.dayHeader::before {
+  content: '';
+  position: absolute;
+  left: -27px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #64ffda;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.dayBadge {
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.dayTitle {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.dayDesc {
+  margin: 0 0 15px 0;
+  font-size: 0.9rem;
+  color: #a8b2d1;
+}
+
+.placesList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.placeCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.placeCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+.placeIcon {
+  font-size: 1.4rem;
+}
+
+.placeName {
+  margin: 0 0 5px 0;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.placeDetail {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #8892b0;
+  line-height: 1.4;
+}
+
+/* --- SAĞ TARAF: HARİTA --- */
+.mapSection {
+  flex: 1.5;
+  /* %60 civarı yer kaplar */
+  height: 100%;
+  padding: 20px;
+  background-color: #0a192f;
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.mapLoading,
+.mapError {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #112240;
+  color: #64ffda;
+  font-weight: 600;
+}
+
+.infoWindow {
+  color: #0a192f;
+  padding: 5px;
+  text-align: center;
+}
+
+.infoWindow h4 {
+  margin: 0 0 5px 0;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.infoWindow p {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff7eb3;
+}
+
+/* 📱 MOBİL UYUM */
+@media (max-width: 992px) {
+  .splitContainer {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .mapSection {
+    flex: none;
+    height: 45vh;
+    padding: 80px 15px 0 15px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .listSection {
+    max-width: 100%;
+    height: auto;
+    overflow-y: visible;
+    padding: 20px 15px;
+    border-right: none;
+  }
+}

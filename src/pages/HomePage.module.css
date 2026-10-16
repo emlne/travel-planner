@@ -1,0 +1,270 @@
+/* src/pages/HomePage.module.css */
+
+.homeContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: clamp(80px, 10vh, 120px); /* Ekran yüksekliğine göre üst boşluk */
+  padding-bottom: 60px;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #ffffff;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Olası yatay taşmaları kesin olarak engeller */
+}
+
+/* --- Başlık Kısmı --- */
+.heroSection {
+  text-align: center;
+  margin-bottom: clamp(20px, 4vw, 40px);
+  width: 90%;
+  max-width: 800px;
+  padding: 0;
+}
+
+.subtitle {
+  font-size: clamp(11px, 1.5vw, 14px);
+  letter-spacing: 2px;
+  color: #a8b2d1;
+  text-transform: uppercase;
+}
+
+.mainTitle {
+  /* clamp(minimum, tercih edilen, maksimum) - Ekran küçüldükçe font da küçülür */
+  font-size: clamp(2rem, 5vw, 3.5rem); 
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 10px 0 15px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.description {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: #ccd6f6;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 600px; /* Metnin çok uzayıp göz yormasını engeller */
+}
+
+/* --- Cam Efektli (Glassmorphism) Form Kartı --- */
+.glassCard {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: clamp(20px, 4vw, 40px); /* Mobilde 20px, masaüstünde 40px iç boşluk */
+  width: 92%; /* Tam ekranı kaplamaması için %92 */
+  max-width: 700px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(15px, 3vw, 25px);
+}
+
+.cardHeader {
+  background: rgba(10, 25, 47, 0.5);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: clamp(11px, 1.5vw, 13px);
+  font-weight: 600;
+  width: max-content;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inputGroup label, .filterGroup label {
+  display: block;
+  font-size: clamp(13px, 1.5vw, 14px);
+  font-weight: 500;
+  color: #ccd6f6;
+  margin-bottom: 8px;
+}
+
+.destinationInput {
+  width: 100%;
+  padding: clamp(12px, 2vw, 16px) 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: clamp(14px, 2vw, 16px);
+  outline: none;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.destinationInput:focus {
+  border-color: #ff7eb3;
+  box-shadow: 0 0 15px rgba(255, 126, 179, 0.2);
+}
+
+/* --- Kategori Butonları (Badges) --- */
+.categoriesWrapper {
+  display: flex;
+  flex-wrap: wrap; /* Mobilde alt satıra geçmelerini sağlar */
+  gap: 8px;
+}
+
+.categoryBadge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ccd6f6;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: clamp(11px, 1.5vw, 13px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* İçindeki metnin iki satıra düşmesini engeller */
+}
+
+.categoryBadge:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.activeCategory {
+  background: rgba(255, 126, 179, 0.15);
+  border-color: #ff7eb3;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 126, 179, 0.3);
+}
+
+/* --- Filtreler (Gün ve Araç) --- */
+.filtersRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Dar ekranlarda yan yana durmaya zorlamaz, alta atar */
+}
+
+.filterGroup {
+  flex: 1;
+  min-width: 200px; /* Çok daralırsa alt satıra geçmesini tetikler */
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap; /* Butonların taşmasını engeller */
+  gap: 8px;
+}
+
+/* Yuvarlak Gün Butonları */
+.circleBtn {
+  width: clamp(34px, 4vw, 40px);
+  height: clamp(34px, 4vw, 40px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  font-size: clamp(13px, 1.5vw, 15px);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circleBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.activeDay {
+  background: rgba(255, 126, 179, 0.2);
+  border-color: #ff7eb3;
+  box-shadow: 0 0 15px rgba(255, 126, 179, 0.4);
+}
+
+/* Kare Araç Butonları */
+.boxBtn {
+  width: clamp(40px, 5vw, 45px);
+  height: clamp(36px, 4.5vw, 40px);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: clamp(16px, 2vw, 18px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.boxBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.activeVehicle {
+  background: rgba(100, 255, 218, 0.2);
+  border-color: #64ffda;
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
+}
+
+/* --- Rota Çiz Butonu --- */
+.generateBtn {
+  width: 100%;
+  margin-top: 10px;
+  padding: clamp(14px, 2vw, 16px);
+  background: linear-gradient(135deg, #64ffda, #00b4db);
+  color: #0a192f;
+  border: none;
+  border-radius: 12px;
+  font-size: clamp(15px, 2vw, 16px);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+  transition: all 0.3s ease;
+}
+
+.generateBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 255, 218, 0.5);
+  background: linear-gradient(135deg, #00b4db, #64ffda);
+}
+
+/* ========================================= */
+/* --- 📱 RESPONSIVE MEDIA QUERIES 📱 --- */
+/* ========================================= */
+
+/* Tablet ve Küçük Ekranlar */
+@media (max-width: 768px) {
+  .filtersRow {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Mobil Telefonlar (En Küçük Ekranlar İçin Ekstra Düzeltmeler) */
+@media (max-width: 480px) {
+  .homeContainer {
+    padding-top: 90px;
+  }
+  
+  .glassCard {
+    border-radius: 20px;
+  }
+
+  .buttonGroup {
+    /* Mobilde butonlar çok sıkışmasın diye aralıkları açıyoruz */
+    gap: 10px; 
+  }
+  
+  .filterGroup {
+    min-width: 100%;
+  }
+}

@@ -1,0 +1,94 @@
+/* Arka plan karartması */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 25, 47, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+}
+
+/* Sidebar'ın kendisi */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background: rgba(10, 25, 47, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #ccd6f6;
+}
+
+/* Mobilde tam ekran olsun */
+@media (max-width: 480px) {
+  .sidebar { width: 100%; }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header h2 { margin: 0; font-size: 1.4rem; color: #ffffff; font-weight: 800; }
+
+.closeBtn {
+  background: rgba(255, 255, 255, 0.05); border: none; color: #a8b2d1;
+  width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+}
+.closeBtn:hover { background: rgba(255, 117, 140, 0.2); color: #ff758c; transform: rotate(90deg); }
+
+.content {
+  flex: 1; overflow-y: auto; padding: 20px 30px;
+}
+.content::-webkit-scrollbar { width: 6px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: rgba(100, 255, 218, 0.2); border-radius: 10px; }
+
+.message { text-align: center; color: #64ffda; margin-top: 50px; font-weight: 600; }
+
+.emptyState { text-align: center; margin-top: 50px; }
+.emptyIcon { font-size: 3rem; margin-bottom: 15px; }
+.emptyState p { color: #8892b0; margin-bottom: 20px; }
+
+.createBtn {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c); color: white;
+  border: none; padding: 10px 24px; border-radius: 20px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3); transition: all 0.3s;
+}
+.createBtn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5); }
+
+.list { display: flex; flex-direction: column; gap: 15px; }
+
+/* Rota Kartları */
+.card {
+  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 20px; cursor: pointer; transition: all 0.3s;
+}
+.card:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(100, 255, 218, 0.3); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+.cardHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.cardTitle { margin: 0; font-size: 1.1rem; color: #ffffff; line-height: 1.3; padding-right: 10px; }
+
+.deleteBtn {
+  background: transparent; color: #ff758c; border: none; font-size: 1rem;
+  cursor: pointer; transition: 0.2s; padding: 5px; opacity: 0.5;
+}
+.card:hover .deleteBtn { opacity: 1; }
+.deleteBtn:hover { transform: scale(1.2); }
+
+.cardBody { display: flex; gap: 10px; margin-bottom: 15px; }
+.badge { background: rgba(100, 255, 218, 0.1); color: #64ffda; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; }
+
+.cardFooter { font-size: 0.8rem; color: #8892b0; text-align: right; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }

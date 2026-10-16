@@ -1,0 +1,182 @@
+/* src/components/Navbar.module.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  /* Kenarlardan ferah boşluk */
+  position: absolute;
+  /* Arka plan resminin üstünde durması için */
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --- LOGO --- */
+.logoContainer {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.logoLink {
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+}
+
+.brandName {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  /* Harfler arası geniş boşluk = premium his */
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Yumuşak geçiş efekti */
+}
+
+/* --- AKSİYONLAR VE BUTONLAR --- */
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.authButtons {
+  display: flex;
+  gap: 16px;
+  /* İki buton arası boşluk */
+  align-items: center;
+}
+
+/* Şeffaf "Giriş Yap" Butonu (Glassmorphism) */
+.loginBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  /* Hap şekli */
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  /* Arkasını buğulu gösterir */
+  transition: all 0.3s ease;
+}
+
+.loginBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+/* Pembe Gradyanlı "Kayıt Ol" Butonu */
+.registerBtn {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  /* Görseldeki sıcak pembe */
+  border: none;
+  color: #ffffff;
+  padding: 10px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3);
+  transition: all 0.3s ease;
+}
+
+.registerBtn:hover {
+  transform: translateY(-2px);
+  /* Üzerine gelince hafif yukarı kalkar */
+  box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5);
+}
+
+/* --- GİRİŞ YAPMIŞ KULLANICI GÖRÜNÜMÜ --- */
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 16px 6px 6px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ff758c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.greeting {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.logoutBtn:hover {
+  color: #ffffff;
+}
+
+/* Navbar.module.css içine eklenecek */
+
+.myRoutesBtn {
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.myRoutesBtn:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(100, 255, 218, 0.2);
+}
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 20px;
+    /* Mobilde kenar boşluklarını daralt */
+  }
+
+  .brandName {
+    font-size: 22px;
+  }
+
+  .loginBtn {
+    display: none;
+    /* Çok küçük ekranlarda "Giriş Yap"ı gizleyip sadece kayıt olu bırakabiliriz (opsiyonel) */
+  }
+}

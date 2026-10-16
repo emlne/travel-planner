@@ -1,0 +1,185 @@
+/* src/components/AuthModal.module.css */
+/* --- YENİ EKLENEN TAŞIYICI KUTU --- */
+.modalContainer {
+  position: fixed;
+  inset: 0; /* Ekranı tam kapla */
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Mobilde ekran kenarlarına yapışmasını engeller */
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 25, 47, 0.7); /* Derin lacivert şeffaflık */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1; /* Navbar'ın da üstüne çıkması için */
+}
+
+.modal {
+  position: relative; /* Artık transform'a gerek yok, Container onu ortalayacak */
+  z-index: 2; /* Overlay'in üstünde dursun */
+  background: rgba(255, 255, 255, 0.05); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%; /* Bulunduğu kabın %100'ü */
+  max-width: 420px; /* Ama 420px'i asla geçmesin */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Kapat butonu */
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #ccd6f6;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #a8b2d1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Alanları */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ccd6f6;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3); /* İçi koyu input */
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.input:focus {
+  border-color: #ff7eb3;
+  box-shadow: 0 0 0 4px rgba(255, 126, 179, 0.15);
+}
+
+/* Submit Butonu */
+.submitBtn {
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c); /* Navbar'daki aynı ana pembe renk */
+  border: none;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3);
+  transition: all 0.3s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* Switch Area (Geçiş) */
+.switchArea {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.switchText {
+  color: #a8b2d1;
+  font-size: 0.9rem;
+  margin-right: 8px;
+}
+
+.switchBtn {
+  background: none;
+  border: none;
+  color: #64ffda; /* Turkuaz Fethiye vurgusu */
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.switchBtn:hover {
+  color: #00b4db;
+  text-decoration: underline;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 480px) {
+  .modal {
+    padding: 30px 20px;
+    width: 95%;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+}
