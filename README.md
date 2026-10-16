@@ -59,6 +59,14 @@ Projenin backend servisi Render üzerinde canlı olarak yayınlanmaktadır. API 
 
 ---
 
+## 📑 Postman Koleksiyonu
+
+Sistemi yerelde veya canlı sunucuda (Render) test etmek için hazırlanan güncel API isteklerine (Auth, Admin Kontrolleri, Rota Senaryoları) aşağıdaki bağlantıdan doğrudan ulaşabilirsiniz:
+
+👉 **[Postman Koleksiyonuna Buradan Bakabilirsiniz](./rotabul.postman_collection.json)**
+
+Bu bağlantı üzerinden koleksiyon dosyasını bilgisayarınıza indirip Postman uygulamasına `Import` ederek tüm senaryoları saniyeler içinde simüle edebilirsiniz.
+
 ## 💻 Kurulum ve Yerel Çalıştırma
 
 ### Gereksinimler
